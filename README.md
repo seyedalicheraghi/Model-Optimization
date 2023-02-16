@@ -1,5 +1,3 @@
-# Flex-Logix uses ONNX2Keras repository to convert ONNX models to TFLite
-
 ONNX to Keras deep neural network converter. 
 
 [![GitHub License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
