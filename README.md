@@ -61,7 +61,7 @@ Open weight_evaluation.py and change following lines within the code:
     # The following line define what head we want to use
     typeOfHead = 'yolov3'
     # The following variable need to change to refer to the directory which testing images are saved
-    testing_directory = '/home/x1demo/Ali/CanonCustomer/data/samples/*.jpg'
+    testing_directory = '/home/Ali/data/samples/*.jpg'
     # Change Confidence Threshold based on your preference
     Confidence_Threshold = 0.5
     # Change Intersection Over Union (IOU) Threshold based on your preference
@@ -162,6 +162,27 @@ your tflite model. Approach 1 is to use our script for head (weight_evaluation.p
 is to connect the head of the model cut before and use NMS script to draw boxes. Please use 'tfliteBackbone_ONNXHead_evaluation.py' 
 to achieve this goal.
 
+# Batch Normalization After Foldable Operator
+
+BatchNormalization operator are operators cannot be run optimally on Accelerators.They are usually folded into other operators around them. Here two examples are provided for your consideration. In the first example Batch Normalization operators come after 2D-Convolution. We need to optimize the model by folding them into the 2D-Convolution. Following two pictures demonstrate how we do that. You can run 'BeforeBN.py' to optimize the model. 
+
+### Before Optimization
+
+![Before Optimization](BN.png)
+
+### After Optimization
+
+![After Optimization](BN-Opt.png)
+
+### BN After Unfoldable Operator
+
+### Before Optimization
+
+![Before Optimization](BN_After.png)
+
+### After Optimization
+
+![After Optimization](BN_After_OPT.png)
 
 ##FAQ
 ####How many images are required to get the best quantization result?
